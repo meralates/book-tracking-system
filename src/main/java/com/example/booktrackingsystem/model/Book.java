@@ -1,9 +1,6 @@
 package com.example.booktrackingsystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -11,14 +8,17 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String author;
     private String publisher;
     private String publishingDate;
 
+    @ManyToOne
+    @JoinColumn(name="author_id",nullable = false)
+    private Author author;
+
     public Book() {}//bos constructor
-    public Book(String name, String author, String publisher, String publishingDate) {
+    public Book(String name, Author author, String publisher, String publishingDate) {
         this.name = name;
-        this.author = author;
+        this.author=author;
         this.publisher = publisher;
         this.publishingDate = publishingDate;
     }
@@ -34,10 +34,10 @@ public class Book {
     public void setName(String name) {
         this.name = name;
     }
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
     public String getPublisher() {
