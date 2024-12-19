@@ -16,7 +16,7 @@ public class Author {
 
     @OneToMany(mappedBy = "author",cascade=CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Book> books=new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     public Long getId() {
         return id;

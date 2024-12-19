@@ -1,5 +1,6 @@
 package com.example.booktrackingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,15 +14,10 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name="author_id",nullable = false)
+    @JsonBackReference
     private Author author;
 
-    public Book() {}//bos constructor
-    public Book(String name, Author author, String publisher, String publishingDate) {
-        this.name = name;
-        this.author=author;
-        this.publisher = publisher;
-        this.publishingDate = publishingDate;
-    }
+
     public Long getId() {
         return id;
     }
